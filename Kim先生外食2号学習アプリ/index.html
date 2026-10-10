@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>外食業特定技能2号対策</title>
+
+<style>
+
+body{
+    font-family:sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+h1,h2{
+    text-align:center;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#007AFF;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#005fd0;
+}
+
+#quiz{
+    display:none;
+}
+
+.category-label{
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+    color:#007AFF;
+    margin-bottom:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- トップ画面 -->
+
+<div id="home">
+
+<h1>外食業特定技能2号対策</h1>
+
+<button onclick="startCategory('衛生管理')">
+衛生管理
+</button>
+
+<button onclick="startCategory('接客')">
+接客
+</button>
+
+<button onclick="startCategory('店舗運営')">
+店舗運営
+</button>
+
+<button onclick="startCategory('日本語')">
+日本語
+</button>
+
+<button onclick="startRandomQuiz()">
+ランダム出題
+</button>
+
+<button onclick="startMockExam()">
+模擬試験20問
+</button>
+
+<button onclick="startWrongQuestions()">
+間違えた問題
+</button>
+
+<button onclick="resetAllData()">
+保存データリセット
+</button>
+
+
+</div>
+
+<!-- 問題画面 -->
+
+<div id="quiz">
+
+<div id="categoryName"
+class="category-label">
+</div>
+
+<h2>
+ここに問題が表示されます
+</h2>
+
+<button id="choice0"></button>
+<button id="choice1"></button>
+<button id="choice2"></button>
+<button id="choice3"></button>
+<p id="result"></p>
+
+<p id="explanation"></p>
+
+<button id="nextButton">
+次の問題
+</button>
+
+
+<button onclick="goHome()">
+ホームへ戻る
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function startCategory(category){
+
+    document.getElementById("home").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
+
+    document.getElementById("categoryName").innerText =
+        category;
+
+    if(category === "衛生管理"){
+        currentQuestions = hygieneQuestions;
+    }
+
+    if(category === "接客"){
+        currentQuestions = serviceQuestions;
+    }
+
+    if(category === "店舗運営"){
+        currentQuestions = operationQuestions;
+    }
+
+    if(category === "日本語"){
+        currentQuestions = japaneseQuestions;
+    }
+
+    currentQuestion = 0;
+
+    loadQuestion();
+}
+
+function goHome(){
+
+    document.getElementById("quiz").style.display="none";
+
+    document.getElementById("home").style.display="block";
+
+}
+
+</script>
+<script src="data/hygiene.js"></script>
+<script src="data/service.js"></script>
+<script src="data/operation.js"></script>
+<script src="data/japanese.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
